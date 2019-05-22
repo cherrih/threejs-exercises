@@ -23,3 +23,7 @@ Method on the camera which determines which point on the scene the camera is loo
 
 #### Continuous rendering cycle
 Allows for animations. Request animation frame.
+
+#### Object3d Add Method
+Sets up a parent-child relationship between objects
+- Children will share transformation of parent objects

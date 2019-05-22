@@ -7,8 +7,9 @@ function init() {
   // radians not angles 
   plane.rotation.x = Math.PI / 2;
   box.position.y = box.geometry.parameters.height/2;
+  plane.position.y = 1;
 
-  scene.add(box);
+  plane.add(box);
   scene.add(plane);
 
   var camera = new THREE.PerspectiveCamera(
