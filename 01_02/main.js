@@ -4,6 +4,9 @@ function init() {
 
   var box = getBox(1,1,1);
   var plane = getPlane(4);
+
+  plane.name = 'plane-1';
+
   // radians not angles 
   plane.rotation.x = Math.PI / 2;
   box.position.y = box.geometry.parameters.height/2;
@@ -60,6 +63,11 @@ function update(renderer, scene, camera) {
     scene,
     camera
   );
+  
+  var plane = scene.getObjectByName('plane-1');
+  plane.rotation.y += 0.001;
+  plane.rotation.z += 0.001;
+
   requestAnimationFrame(function() {
     update(renderer, scene, camera);
   })
