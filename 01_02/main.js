@@ -49,7 +49,10 @@ function init() {
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setClearColor('rgb(120,120,120)');
   document.getElementById('webgl').appendChild(renderer.domElement);
-  update(renderer, scene, camera);
+
+  var controls = new THREE.OrbitControls(camera, renderer.domElement);
+
+  update(renderer, scene, camera, controls);
   return scene;
 }
 
@@ -91,11 +94,14 @@ function getPointLight(intensity) {
   return new THREE.PointLight(0xffffff, intensity);
 }
 
-function update(renderer, scene, camera) {
+function update(renderer, scene, camera, controls) {
   renderer.render(
     scene,
     camera
   );
+  //activate orbit controls
+  controls.update();
+
   // ANIMATIONS
   // var plane = scene.getObjectByName('plane-1');
   // plane.rotation.y += 0.001;
@@ -109,7 +115,7 @@ function update(renderer, scene, camera) {
   // })
 
   requestAnimationFrame(function() {
-    update(renderer, scene, camera);
+    update(renderer, scene, camera, controls);
   })
 }
 
