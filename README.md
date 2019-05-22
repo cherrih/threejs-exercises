@@ -11,3 +11,12 @@ Eyes we will be seeing the 3D world through. Requires several options.
 
 #### Renderer
 Converts 3D data to 2D image. We will use WebGL renderer. Can use others eg canvas or SVG, but end user experience not as great
+
+#### 3D objects
+Made up of a geometry that defines the shape of the object, and the material that defines the surface quality/the appearance of the object
+
+#### Materials
+Determine how an object reacts to the scene lighting. Default is mesh basic and is not effected by scene lighting at all.
+
+#### LookAt
+Method on the camera which determines which point on the scene the camera is looking at
