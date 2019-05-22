@@ -20,3 +20,6 @@ Determine how an object reacts to the scene lighting. Default is mesh basic and 
 
 #### LookAt
 Method on the camera which determines which point on the scene the camera is looking at
+
+#### Continuous rendering cycle
+Allows for animations. Request animation frame.

@@ -27,11 +27,10 @@ function init() {
   // set size of renderer
   renderer.setSize(window.innerWidth, window.innerHeight);
   document.getElementById('webgl').appendChild(renderer.domElement);
-  renderer.render(
-    scene,
-    camera
-  );
+  update(renderer, scene, camera);
+  return scene;
 }
+
 function getBox(w,h,d) {
   var geometry = new THREE.BoxGeometry(w,h,d);
   var material = new THREE.MeshBasicMaterial({
@@ -42,6 +41,7 @@ function getBox(w,h,d) {
     material
   );
 }
+
 function getPlane(size) {
   var geometry = new THREE.PlaneGeometry(size,size);
   var material = new THREE.MeshBasicMaterial({
@@ -53,4 +53,15 @@ function getPlane(size) {
     material
   );
 }
-init();
+
+function update(renderer, scene, camera) {
+  renderer.render(
+    scene,
+    camera
+  );
+  requestAnimationFrame(function() {
+    update(renderer, scene, camera);
+  })
+}
+
+var scene = init();
