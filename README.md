@@ -27,3 +27,9 @@ Allows for animations. Request animation frame.
 #### Object3d Add Method
 Sets up a parent-child relationship between objects
 - Children will share transformation of parent objects
+
+#### Traverse method
+Executes a function on all the children of an object
+
+#### Fog property
+Allows the scene to fade off to a given color
