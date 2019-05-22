@@ -45,6 +45,7 @@ function init() {
   camera.lookAt(new THREE.Vector3(0,0,0))
 
   var renderer = new THREE.WebGLRenderer();
+  renderer.shadowMap.enabled = true;
   // set size of renderer
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setClearColor('rgb(120,120,120)');
@@ -61,10 +62,12 @@ function getBox(w,h,d) {
   var material = new THREE.MeshPhongMaterial({
     color: 'rgb(120,120,120)'
   });
-  return new THREE.Mesh(
+  var mesh = new THREE.Mesh(
     geometry,
     material
   );
+  mesh.castShadow = true;
+  return mesh;
 }
 
 function getPlane(size) {
@@ -73,10 +76,12 @@ function getPlane(size) {
     color: 'rgb(120,120,120)',
     side: THREE.DoubleSide
   });
-  return new THREE.Mesh(
+  var mesh = new THREE.Mesh(
     geometry,
     material
   );
+  mesh.receiveShadow = true;
+  return mesh;
 }
 
 function getSphere(radius) {
@@ -91,7 +96,9 @@ function getSphere(radius) {
 }
 
 function getPointLight(intensity) {
-  return new THREE.PointLight(0xffffff, intensity);
+  var light = new THREE.PointLight(0xffffff, intensity);
+  light.castShadow = true;
+  return light;
 }
 
 function update(renderer, scene, camera, controls) {

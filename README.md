@@ -34,5 +34,6 @@ Executes a function on all the children of an object
 #### Fog property
 Allows the scene to fade off to a given color
 
+### Lights
 #### PointLight
 Emitted from a single point in space in all directions (like a lightbulb)
