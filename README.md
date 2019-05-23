@@ -8,6 +8,13 @@ Eyes we will be seeing the 3D world through. Requires several options.
 - FOV
 - Aspect ratio
 - near and far clipping planes (anything beyond these distances won't be seen)
+Two types of cameras
+- Perspective camera
+  - Changes size with the distance from the camera
+  - Is the most natural way of looking at a scene
+- Orthographic camera
+  - Has no perspective effects. Size of the objects does not change with distance from the camera
+  - Is used in technical drawings or in some isometric games
 
 #### Renderer
 Converts 3D data to 2D image. We will use WebGL renderer. Can use others eg canvas or SVG, but end user experience not as great

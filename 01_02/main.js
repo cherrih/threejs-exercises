@@ -15,7 +15,7 @@ function init() {
   var sphere = getSphere(0.05);
   var boxGrid = getBoxGrid(10, 1.5);
   var helper = new THREE.CameraHelper(directionalLight.shadow.camera);
-  var ambientLight = getAmbientLight(1);
+  var ambientLight = getAmbientLight(0.05);
 
   plane.name = 'plane-1';
   boxGrid.name = 'boxGrid';
@@ -52,8 +52,8 @@ function init() {
     1, // near
     1000 //far clipping plane
   ); 
-  camera.position.z = 20;
-  camera.position.x = 20;
+  camera.position.z = -15;
+  camera.position.x = 15;
   camera.position.y = 10;
 
   camera.lookAt(new THREE.Vector3(0,0,0))
@@ -181,7 +181,8 @@ function update(renderer, scene, camera, controls, clock) {
     // multiple timeElapsed to increase speed
     // 0.001 to remove glitch that occurs when hit 0
     // use i to use target different values of sin
-    child.scale.y = (Math.sin(timeElapsed * 5 + i) + 1) / 2 + 0.001;
+    var x = timeElapsed * 2 + i;
+    child.scale.y = (noise.simplex2(x,x) + 1) / 2 + 0.001;
     child.position.y = child.scale.y / 2;
   })  
 
