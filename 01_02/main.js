@@ -10,9 +10,10 @@ function init() {
 
   // var box = getBox(1,1,1);
   var plane = getPlane(40);
-  var spotLight = getSpotLight(1);
+  var directionalLight = getDirectionalLight(1);
   var sphere = getSphere(0.05);
   var boxGrid = getBoxGrid(10, 1.5);
+  var helper = new THREE.CameraHelper(directionalLight.shadow.camera);
 
   plane.name = 'plane-1';
   // box.name = 'box-1';
@@ -20,22 +21,23 @@ function init() {
   // radians not angles 
   plane.rotation.x = Math.PI / 2;
   // box.position.y = box.geometry.parameters.height/2;
-  spotLight.position.y = 4;
-  spotLight.intensity = 2;
+  directionalLight.position.y = 4;
+  directionalLight.intensity = 2;
 
   // plane.position.y = 1;
 
-  gui.add(spotLight, 'intensity', 0, 10);
-  gui.add(spotLight.position, 'y', 0, 20);
-  gui.add(spotLight.position, 'z', 0, 20);
-  gui.add(spotLight.position, 'x', 0, 20);
-  gui.add(spotLight, 'penumbra', 0, 1);
+  gui.add(directionalLight, 'intensity', 0, 10);
+  gui.add(directionalLight.position, 'y', 0, 20);
+  gui.add(directionalLight.position, 'z', 0, 20);
+  gui.add(directionalLight.position, 'x', 0, 20);
+  // gui.add(spotLight, 'penumbra', 0, 1);
 
   // scene.add(box);
   scene.add(plane);
-  spotLight.add(sphere);
-  scene.add(spotLight);
+  directionalLight.add(sphere);
+  scene.add(directionalLight);
   scene.add(boxGrid);
+  scene.add(helper);
 
   var camera = new THREE.PerspectiveCamera(
     45, //fov
@@ -43,9 +45,9 @@ function init() {
     1, // near
     1000 //far clipping plane
   ); 
-  camera.position.z = 5;
-  camera.position.x = 1;
-  camera.position.y = 2;
+  camera.position.z = 20;
+  camera.position.x = 20;
+  camera.position.y = 10;
 
   camera.lookAt(new THREE.Vector3(0,0,0))
 
@@ -137,6 +139,17 @@ function getPointLight(intensity) {
 function getSpotLight(intensity) {
   var light = new THREE.SpotLight(0xffffff, intensity);
   light.castShadow = true;
+  return light;
+}
+function getDirectionalLight(intensity) {
+  var light = new THREE.DirectionalLight(0xffffff, intensity);
+  light.castShadow = true;
+  // increase beyond default values
+  light.shadow.camera.left = -10;
+  light.shadow.camera.bottom = -10;
+  light.shadow.camera.right = 10;
+  light.shadow.camera.top = 10;
+
   return light;
 }
 

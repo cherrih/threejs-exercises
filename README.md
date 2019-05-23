@@ -37,6 +37,8 @@ Allows the scene to fade off to a given color
 #### Lights
 - PointLight: Emitted from a single point in space in all directions (like a lightbulb)
 - Spotlight: Control softness of edge with 'penumbra'
+- Directional: Emit parallel light rays. Great for simulating far away light sources eg the sun
+- Ambient: 
 
 #### Shadows
 Need to have object and plane cast shadow and plane receive shadow
