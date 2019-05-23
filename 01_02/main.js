@@ -2,6 +2,7 @@
 function init() {
   var scene = new THREE.Scene();
   var gui = new dat.GUI();
+  var clock = new THREE.Clock();
 
   var enableFog = false;
   if (enableFog) {
@@ -17,6 +18,7 @@ function init() {
   var ambientLight = getAmbientLight(1);
 
   plane.name = 'plane-1';
+  boxGrid.name = 'boxGrid';
   // box.name = 'box-1';
 
   // radians not angles 
@@ -65,7 +67,7 @@ function init() {
 
   var controls = new THREE.OrbitControls(camera, renderer.domElement);
 
-  update(renderer, scene, camera, controls);
+  update(renderer, scene, camera, controls, clock);
   return scene;
 }
 
@@ -163,13 +165,22 @@ function getAmbientLight(intensity) {
   return light;
 }
 
-function update(renderer, scene, camera, controls) {
+function update(renderer, scene, camera, controls, clock) {
   renderer.render(
     scene,
     camera
   );
+
   //activate orbit controls
   controls.update();
+
+  var timeElapsed = clock.getElapsedTime();
+
+  var boxGrid = scene.getObjectByName('boxGrid');
+  boxGrid.children.forEach(child => {
+    child.scale.y = Math.sin(timeElapsed);
+    child.position.y = child.scale.y / 2;
+  })  
 
   // ANIMATIONS
   // var plane = scene.getObjectByName('plane-1');
@@ -184,7 +195,7 @@ function update(renderer, scene, camera, controls) {
   // })
 
   requestAnimationFrame(function() {
-    update(renderer, scene, camera, controls);
+    update(renderer, scene, camera, controls, clock);
   })
 }
 

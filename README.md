@@ -42,7 +42,11 @@ Allows the scene to fade off to a given color
 - RectAreaLight: Made up of 2D light sources that are more realistic than PointLight sources. 
 
 #### Shadows
-Need to have object and plane cast shadow and plane receive shadow
+To render shadows in your scene you need to configure it on the lights, objects, and camera. Need to have object and light cast shadow and plane receive shadow
 
 #### Group
 Non-geometric object used for organizing other objects together
+
+### Animation
+#### Clock object
+Tracks the time in the Three.js application
