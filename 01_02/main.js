@@ -177,8 +177,11 @@ function update(renderer, scene, camera, controls, clock) {
   var timeElapsed = clock.getElapsedTime();
 
   var boxGrid = scene.getObjectByName('boxGrid');
-  boxGrid.children.forEach(child => {
-    child.scale.y = Math.sin(timeElapsed);
+  boxGrid.children.forEach((child, i) => {
+    // multiple timeElapsed to increase speed
+    // 0.001 to remove glitch that occurs when hit 0
+    // use i to use target different values of sin
+    child.scale.y = (Math.sin(timeElapsed * 5 + i) + 1) / 2 + 0.001;
     child.position.y = child.scale.y / 2;
   })  
 
