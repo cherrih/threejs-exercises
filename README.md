@@ -34,6 +34,12 @@ Executes a function on all the children of an object
 #### Fog property
 Allows the scene to fade off to a given color
 
-### Lights
-#### PointLight
-Emitted from a single point in space in all directions (like a lightbulb)
+#### Lights
+- PointLight: Emitted from a single point in space in all directions (like a lightbulb)
+- Spotlight: Control softness of edge with 'penumbra'
+
+#### Shadows
+Need to have object and plane cast shadow and plane receive shadow
+
+#### Group
+Non-geometric object used for organizing other objects together
