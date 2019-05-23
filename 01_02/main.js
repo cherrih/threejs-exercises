@@ -14,6 +14,7 @@ function init() {
   var sphere = getSphere(0.05);
   var boxGrid = getBoxGrid(10, 1.5);
   var helper = new THREE.CameraHelper(directionalLight.shadow.camera);
+  var ambientLight = getAmbientLight(1);
 
   plane.name = 'plane-1';
   // box.name = 'box-1';
@@ -21,7 +22,10 @@ function init() {
   // radians not angles 
   plane.rotation.x = Math.PI / 2;
   // box.position.y = box.geometry.parameters.height/2;
-  directionalLight.position.y = 4;
+  directionalLight.position.y = 10;
+  directionalLight.position.x = 13;
+  directionalLight.position.z = 10;
+
   directionalLight.intensity = 2;
 
   // plane.position.y = 1;
@@ -38,6 +42,7 @@ function init() {
   scene.add(directionalLight);
   scene.add(boxGrid);
   scene.add(helper);
+  scene.add(ambientLight);
 
   var camera = new THREE.PerspectiveCamera(
     45, //fov
@@ -150,6 +155,11 @@ function getDirectionalLight(intensity) {
   light.shadow.camera.right = 10;
   light.shadow.camera.top = 10;
 
+  return light;
+}
+
+function getAmbientLight(intensity) {
+  var light = new THREE.AmbientLight('rgb(10, 30, 50)', intensity);
   return light;
 }
 
