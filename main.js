@@ -32,10 +32,10 @@ function init() {
 
   // plane.position.y = 1;
 
-  gui.add(directionalLight, 'intensity', 0, 10);
-  gui.add(directionalLight.position, 'y', 0, 20);
-  gui.add(directionalLight.position, 'z', 0, 20);
-  gui.add(directionalLight.position, 'x', 0, 20);
+  // gui.add(directionalLight, 'intensity', 0, 10);
+  // gui.add(directionalLight.position, 'y', 0, 20);
+  // gui.add(directionalLight.position, 'z', 0, 20);
+  // gui.add(directionalLight.position, 'x', 0, 20);
   // gui.add(spotLight, 'penumbra', 0, 1);
 
   // scene.add(box);
@@ -43,7 +43,7 @@ function init() {
   directionalLight.add(sphere);
   scene.add(directionalLight);
   scene.add(boxGrid);
-  scene.add(helper);
+  // scene.add(helper);
   scene.add(ambientLight);
 
   var camera = new THREE.PerspectiveCamera(
@@ -51,12 +51,35 @@ function init() {
     window.innerWidth/window.innerHeight, //aspect ratio
     1, // near
     1000 //far clipping plane
-  ); 
-  camera.position.z = -15;
-  camera.position.x = 15;
-  camera.position.y = 10;
+  );
 
-  camera.lookAt(new THREE.Vector3(0,0,0))
+  var cameraZPosition = new THREE.Group();
+  var cameraYRotation = new THREE.Group();
+  var cameraXRotation = new THREE.Group();
+
+  cameraZPosition.add(camera);
+  cameraXRotation.add(cameraZPosition);
+  cameraYRotation.add(cameraXRotation);
+  scene.add(cameraYRotation);
+
+  gui.add(cameraZPosition.position, 'z', -100, 100);
+  gui.add(cameraYRotation.rotation, 'y', -Math.PI, Math.PI);
+  gui.add(cameraXRotation.rotation, 'x', -Math.PI, Math.PI);
+
+  // var camera = new THREE.OrthographicCamera(
+  //   -15,
+  //   15,
+  //   15,
+  //   -15,
+  //   1,
+  //   10000
+  // );
+  
+  // camera.position.z = -15;
+  // camera.position.x = 15;
+  // camera.position.y = 10;
+
+  // camera.lookAt(new THREE.Vector3(0,0,0));
 
   var renderer = new THREE.WebGLRenderer();
   renderer.shadowMap.enabled = true;

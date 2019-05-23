@@ -57,3 +57,6 @@ Non-geometric object used for organizing other objects together
 ### Animation
 #### Clock object
 Tracks the time in the Three.js application
+
+#### Animation Rig
+Consists of helper objects (like three.js group objects) to facilitate the animation process
